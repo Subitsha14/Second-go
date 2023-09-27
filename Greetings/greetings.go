@@ -3,6 +3,7 @@ package greetings
 import (
 	"errors"
 	"fmt"
+	"math/rand"
 )
 
 func Hello(name string) (string, error) {
@@ -10,6 +11,12 @@ func Hello(name string) (string, error) {
 	if name == "" {
 		return "", errors.New(" no name received ")
 	}
-	greet := fmt.Sprintf("Hello %v , Welcome! ", name)
+	greet := fmt.Sprintf(randomFormat(), name)
 	return greet, nil
+}
+
+func randomFormat() string {
+	formats := []string{"Hii %v. Wecome!", "Great to see you, %v", "Hail, %v! well met!"}
+
+	return formats[rand.Intn(len(formats))]
 }
